@@ -113,7 +113,7 @@
 - **遵循 SOLID 原則及最佳實踐**
 - **只實作需求中明確提到的部分，不要自行添加額外功能**
 - 詳細的程式碼實作規範請參考：
-  - [ASP.NET Core WebAPI 專案開發指導原則](./prompts/dotnet-core-webapi-development.md)
+  - [ASP.NET Core WebAPI 專案開發指導原則](./prompts/develop-dotnet-core-webapi.md)
 
 ### 文檔管理
 
