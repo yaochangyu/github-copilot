@@ -59,7 +59,7 @@ $wslDirCommands = $wslTargets | ForEach-Object {
 }
 $wslLinkCommands = $wslTargets | ForEach-Object {
     $targetEsc = $_ -replace "'","'\\''"
-    "rm -f '$targetEsc'; ln -sf '$wslSourceFromWindowsEsc' '$targetEsc'"
+    "rm -f '$targetEsc'; ln -sf '$wslSourceFromWindowsEsc' '$targetEsc'; echo 'WSL link created: $targetEsc'"
 }
 
 $wslCommandParts = @(
