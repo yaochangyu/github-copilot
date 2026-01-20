@@ -1,4 +1,22 @@
 #Requires -Version 5.1
+<#
+.SYNOPSIS
+    Link copilot-instructions.md to AI agent folders
+.DESCRIPTION
+    Create hard links or symbolic links of copilot-instructions.md to user home AI agent folders
+    Supports both Windows and WSL environments
+.PARAMETER WslUser
+    WSL username. Defaults to current Windows username.
+.EXAMPLE
+    .\link-ai-instructions.ps1
+.EXAMPLE
+    .\link-ai-instructions.ps1 -WslUser myuser
+#>
+
+param(
+    [string]$WslUser = $env:USERNAME
+)
+
 $ErrorActionPreference = 'Stop'
 
 $root = $env:USERPROFILE
@@ -38,7 +56,7 @@ foreach ($target in $targets) {
 
 Write-Host "Windows links created from: $source"
 
-$wslHome = '/home/yao'
+$wslHome = "/home/$WslUser"
 $drive = $source.Substring(0, 1).ToLower()
 $pathNoDrive = $source.Substring(2) -replace '\\','/'
 $wslSourceFromWindows = "/mnt/$drive$pathNoDrive"

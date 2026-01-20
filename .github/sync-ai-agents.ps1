@@ -5,9 +5,17 @@
 .DESCRIPTION
     Sync .github folder content to .copilot, .gemini, .claude, .github folders under user home
     Supports both Windows and WSL environments
+.PARAMETER WslUser
+    WSL username. Defaults to current Windows username.
 .EXAMPLE
     .\sync-ai-agents.ps1
+.EXAMPLE
+    .\sync-ai-agents.ps1 -WslUser myuser
 #>
+
+param(
+    [string]$WslUser = $env:USERNAME
+)
 
 $ErrorActionPreference = 'Stop'
 
@@ -115,7 +123,7 @@ if ($IsWindows -or (-not (Get-Variable IsWindows -ErrorAction SilentlyContinue))
         exit 0
     }
     
-    $wslHome = '/home/yao'
+    $wslHome = "/home/$WslUser"
     $drive = $sourceDir.Substring(0, 1).ToLower()
     $pathNoDrive = $sourceDir.Substring(2) -replace '\\','/'
     $wslSourceDir = "/mnt/$drive$pathNoDrive"
